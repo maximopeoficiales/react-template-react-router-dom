@@ -5,8 +5,6 @@ import {
   NavLink,
   Navigate
 } from 'react-router-dom';
-import { LazyPage1, LazyPage2, LazyPage3 } from '../lazyload/pages';
-
 import logo from '../logo.svg';
 import { routes } from './routes';
 
@@ -28,8 +26,8 @@ export const Navigation = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          {routes.map(e =>
-            <Route path={e.path} element={<e.component />} />
+          {routes.map(({ to, path, Component }) =>
+            <Route key={to} path={path} element={<Component />} />
           )}
           <Route path="/*" element={<Navigate to="/lazy1" replace />} />
         </Routes>
